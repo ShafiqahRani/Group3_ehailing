@@ -151,7 +151,7 @@ public class BookingDAO {
         return list;
     }
 
-    // Get bookings assigned to a specific driver (active)
+    // Get bookings assigned to a specific driver yg ada
     public List<Booking> getBookingsByDriverId(int driver_id) {
         List<Booking> bookings = new ArrayList<>();
         String sql = "SELECT * FROM bookings WHERE driver_id = ? AND status = 'Pending'";
@@ -252,7 +252,7 @@ public class BookingDAO {
                 driver.setEmail(rs.getString("email"));
                 driver.setPhone(rs.getString("phone"));
                 driver.setCarInfo(rs.getString("carInfo"));
-                driver.setPassword(rs.getString("password")); // Optional
+                driver.setPassword(rs.getString("password")); 
 
                 return driver;
             }

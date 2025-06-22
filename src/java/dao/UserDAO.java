@@ -13,6 +13,7 @@ import java.util.List;
 import static util.DBConnection.getConnection;
 
 public class UserDAO {
+    //ADD NEW USER
     public void insertUser(User user) {
         String sql = "INSERT INTO users(name, email, password) VALUES (?, ?, ?)";
         try (Connection con = DBConnection.getConnection();
@@ -26,6 +27,7 @@ public class UserDAO {
         }
     }
     
+    //CHECK IF EMAIL AND PASSWORD VALIDE TAK
     public boolean validateLogin(String email, String password) {
     boolean isValid = false;
     String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
@@ -45,6 +47,8 @@ public class UserDAO {
     }
     return isValid;
 }
+    
+    //CHECK EMAIL DAH EXIST KA BELUM
 public boolean isEmailExist(String email) {
     boolean exists = false;
     try {
@@ -61,6 +65,7 @@ public boolean isEmailExist(String email) {
     return exists;
 }
 
+//GET USER BASED ON EMAIL AND PASSWORD
 public User getUserByEmailAndPassword(String email, String password) {
     User user = null;
     String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
@@ -87,6 +92,7 @@ public User getUserByEmailAndPassword(String email, String password) {
     return user;
 }
 
+//LIST USER
     public List<User> getAllUsers() {
         List<User> list = new ArrayList<>();
         String sql = "SELECT * FROM users";
@@ -107,6 +113,7 @@ public User getUserByEmailAndPassword(String email, String password) {
         return list;
     }
 
+    //GET INFORMATION USER BY ID
     public User getUserById(int id) {
         User u = null;
         String sql = "SELECT * FROM users WHERE id=?";
@@ -127,6 +134,7 @@ public User getUserByEmailAndPassword(String email, String password) {
         return u;
     }
 
+    //UPDATE PROFILE USER
     public boolean updateUser(User user) {
     String sql = "UPDATE users SET name = ?, password = ? WHERE email = ?";
     try (Connection conn = getConnection();
@@ -144,6 +152,7 @@ public User getUserByEmailAndPassword(String email, String password) {
     }
 }
 
+    //DELETE PROFILE
     public void deleteUser(int id) {
         String sql = "DELETE FROM users WHERE id=?";
         try (Connection con = DBConnection.getConnection();
@@ -155,6 +164,7 @@ public User getUserByEmailAndPassword(String email, String password) {
         }
     }
     
+    //DELETE EMAIL USER
     public boolean deleteUserByEmail(String email) {
     String sql = "DELETE FROM users WHERE email = ?";
     try (Connection conn = getConnection();

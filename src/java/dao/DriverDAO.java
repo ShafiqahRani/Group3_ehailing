@@ -80,6 +80,7 @@ public class DriverDAO {
     return false;
 }
     
+    // GET DRIVER BY EMAIL AND PASSWORD
     public Driver getDriverByEmailAndPassword(String email, String password) {
     String sql = "SELECT * FROM drivers WHERE email = ? AND password = ?";
     try (Connection conn = getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -102,6 +103,7 @@ public class DriverDAO {
     return null;
 }
 
+    // GET DRIVER ID BY EMAIL
 public int getDriverIdByEmail(String email) {
     String sql = "SELECT id FROM drivers WHERE email = ?";
     try (Connection conn = getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -116,6 +118,7 @@ public int getDriverIdByEmail(String email) {
     return -1; // Not found
 }
 
+//UPDATE DRIVER
 public boolean updateDriver(Driver driver) {
     String sql = "UPDATE drivers SET name = ?, phone = ?, carInfo = ?, password = ? WHERE email = ?";
     try (Connection conn = getConnection();
@@ -132,7 +135,7 @@ public boolean updateDriver(Driver driver) {
     }
 }
 
-
+//DELETE DRIVER
 public boolean deleteDriverByEmail(String email) {
     String sql = "DELETE FROM drivers WHERE email = ?";
     try (Connection conn = DBConnection.getConnection();
